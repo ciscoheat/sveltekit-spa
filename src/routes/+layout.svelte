@@ -1,0 +1,12 @@
+<slot />
+
+<style>
+	:global(body) {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+</style>
