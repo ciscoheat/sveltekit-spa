@@ -43,9 +43,44 @@ export const ssr = false;
 
 ## The fallback page
 
-Since the site is static, a request like `https://yoursite.com/user/3` will fail with a 404 since the file `/user/3/index.html` doesn't exist (and shouldn't, since the route is dynamic). Therefore the `fallback` option is set in the `svelte.config.js`, but the web host needs to be able to use it.
+Since the site is static, a request like `https://yoursite.com/user/3` will fail with a 404 since the file `/user/3/index.html` doesn't exist (and shouldn't, since this site route is dynamic). Therefore the `fallback` option is set in the `svelte.config.js`, but the web host needs to be able to use it.
 
-For traditional web hosts that are using Apache, this can be easily done with a `.htaccess` file, which is included in this project. For other hosts, read more in the [SvelteKit docs](https://kit.svelte.dev/docs/adapter-static#spa-mode-add-fallback-page).
+### Apache
+
+For traditional web hosts that are using Apache, this can be easily done with a `.htaccess` file, which is included in this project.
+
+**static/.htaccess**
+
+```
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^200\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /200.html [L]
+</IfModule>
+```
+
+### Nginx
+
+Nginx can be configured in a similar way like this:
+
+```
+# nginx configuration by winginx.com
+
+location ~ ^/200\.html$ { }
+
+location / {
+  if (!-e $request_filename){
+    rewrite ^(.*)$ /200.html break;
+  }
+}
+```
+
+### Other hosts
+
+For other hosts, read more in the [SvelteKit docs](https://kit.svelte.dev/docs/adapter-static#spa-mode-add-fallback-page).
 
 ## Developing
 
@@ -66,4 +101,6 @@ To create a production version of your app:
 npm run build
 ```
 
-You can preview the production build with `npm run preview`, or use `npm run serve` to test it with a `http-server`. See `package.json` for how its configured.
+Which will create a set of files in the `build` folder, which can be uploaded to your hosting service.
+
+You can preview the production build with `npm run preview`, or use `npm run serve` to test it locally with `http-server`. See `package.json` for how its configured.
