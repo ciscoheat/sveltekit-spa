@@ -1,17 +1,44 @@
-# create-svelte
+# sveltekit-spa
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+An example how to configure SvelteKit to become a SPA with client-side routing.
 
-## Creating a project
+Based on the SvelteKit skeleton template with as little modifications as possible, created by `npm create svelte@latest sveltekit-spa`.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Changes from default configuration
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+Packages added:
 
-# create a new project in my-app
-npm create svelte@latest my-app
+- `@sveltejs/adapter-static` - to generate static files that can be hosted anywhere
+- `http-server` - to demonstrate the fallback/proxy behavior of a static HTTP server
+
+**svelte.config.js**
+
+```diff
+- import adapter from '@sveltejs/adapter-auto';
++ import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/kit/vite';
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  // Consult https://kit.svelte.dev/docs/integrations#preprocessors
+  // for more information about preprocessors
+  preprocess: vitePreprocess(),
+
+  kit: {
+-   adapter: adapter()
++   adapter: adapter({
++     fallback: 'index.html' // Could be different depending on host
++   })
+  }
+};
+
+export default config;
+```
+
+**src/routes/+layout.svelte**
+
+```ts
+export const ssr = false;
 ```
 
 ## Developing
@@ -33,6 +60,4 @@ To create a production version of your app:
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+You can preview the production build with `npm run preview`, or use `npm run serve` to test it with a `http-server`. See `package.json` for how its configured.
