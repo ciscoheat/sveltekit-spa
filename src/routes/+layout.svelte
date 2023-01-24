@@ -1,7 +1,9 @@
-<slot />
+<main>
+	<slot />
+</main>
 
 <style>
-	:global(body) {
+	main {
 		height: 100vh;
 		display: flex;
 		flex-direction: column;
