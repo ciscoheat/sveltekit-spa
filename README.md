@@ -27,7 +27,7 @@ const config = {
   kit: {
 -   adapter: adapter()
 +   adapter: adapter({
-+     fallback: 'index.html' // Could be different depending on host
++     fallback: '200.html' // Could be different depending on host
 +   })
   }
 };
@@ -40,6 +40,12 @@ export default config;
 ```ts
 export const ssr = false;
 ```
+
+## The fallback page
+
+Since the site is static, a request like `https://yoursite.com/user/3` will fail with a 404 since the file `/user/3/index.html` doesn't exist (and shouldn't, since the route is dynamic). Therefore the `fallback` option is set in the `svelte.config.js`, but the web host needs to be able to use it.
+
+For traditional web hosts that are using Apache, this can be easily done with a `.htaccess` file, which is included in this project. For other hosts, read more in the [SvelteKit docs](https://kit.svelte.dev/docs/adapter-static#spa-mode-add-fallback-page).
 
 ## Developing
 
