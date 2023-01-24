@@ -35,7 +35,7 @@ const config = {
 export default config;
 ```
 
-**src/routes/+layout.svelte**
+**src/routes/+layout.ts**
 
 ```ts
 export const ssr = false;
