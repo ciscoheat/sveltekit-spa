@@ -102,4 +102,4 @@ npm run build
 
 Which will create a set of files in the `build` folder, which can be uploaded to your hosting service.
 
-You can preview the production build with `npm run preview`, or use `npm run serve` to test it locally with `http-server`. See `package.json` for how its configured.
+You can preview the production build with `npm run preview`.
