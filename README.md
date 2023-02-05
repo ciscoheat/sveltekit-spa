@@ -9,7 +9,6 @@ Based on the SvelteKit skeleton template with as little modifications as possibl
 Packages added:
 
 - `@sveltejs/adapter-static` - to generate static files that can be hosted anywhere
-- `http-server` - to demonstrate the fallback/proxy behavior of a static HTTP server
 
 **svelte.config.js**
 
