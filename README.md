@@ -43,7 +43,7 @@ export const ssr = false;
 
 ## The fallback page
 
-Since the site is static, a request like `https://yoursite.com/user/3` will fail with a 404 since the file `/user/3/index.html` doesn't exist (and shouldn't, since this site route is dynamic). Therefore the `fallback` option is set in the `svelte.config.js`, but the web host needs to be able to use it.
+Since the site is static, a request like `https://yoursite.com/user/3` will fail with a 404 since the file `public_html/user/3/index.html` doesn't exist (and shouldn't, since this site route is dynamic). Therefore the `fallback` option is set in the `svelte.config.js`, but the web host needs to be able to use it.
 
 ### Apache
 
