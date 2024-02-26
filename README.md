@@ -1,8 +1,10 @@
 # sveltekit-spa
 
-An example how to configure SvelteKit to become a SPA with client-side routing.
+# DEPRECATED
 
-Based on the SvelteKit skeleton template with as little modifications as possible, created by `npm create svelte@latest sveltekit-spa`.
+This project uses SvelteKit 1. **Don't use or fork it**, read the [Single-page apps](https://kit.svelte.dev/docs/single-page-apps) docs on the SvelteKit website instead, and use this only as a reference.
+
+---
 
 ## Changes from default configuration
 
